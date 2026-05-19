@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Chemically Auditable Failure Atlases for MOF Adsorption Machine Learning"
+message: "If you use this repository, please cite the associated manuscript and this software repository."
+type: software
+authors:
+  - family-names: Abaei
+    given-names: Shayan
+  - family-names: Masoudi
+    given-names: Fatemeh
+  - family-names: Alimardani
+    given-names: Hossein
+  - family-names: Fakhroleslam
+    given-names: Mohammad
+  - family-names: Eslami
+    given-names: Fatemeh
+  - family-names: Asgari
+    given-names: Mehrdad
+repository-code: "https://github.com/Asgari-research/interpretable-mof-failure-maps"
+license: MIT
+version: "0.1.0"

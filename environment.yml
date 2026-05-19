@@ -1,0 +1,17 @@
+name: mof-failure-atlas
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - joblib
+  - tqdm
+  - jupyter
+  - notebook
+  - ipykernel
+  - pyarrow
+  - pip
