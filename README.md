@@ -1,112 +1,134 @@
-# Chemically Auditable Failure Atlases for MOF Adsorption Machine Learning
+# Mapping Trust in MOF Adsorption Predictions
 
-This repository contains the reproducibility package for the manuscript:
+Reproducibility package for the manuscript:
 
-**Chemically Auditable Failure Atlases for Trustworthy MOF Adsorption Machine Learning**
+**Mapping Trust in MOF Adsorption Predictions: Chemically Auditable Descriptor Atlases for Machine-Learning Screening**
 
-The project builds interpretable failure atlases for MOF adsorption machine learning. Instead of reporting only global benchmark metrics, the workflow converts prediction outputs into chemically auditable diagnostics of local error, rank instability, model disagreement, descriptor-space novelty, and recurring hard-domain motifs.
+This repository supports the descriptor-trust-atlas workflow used to evaluate local reliability in machine-learning predictions of metal--organic framework (MOF) adsorption. The project does not treat a single global score as sufficient evidence for screening decisions. It stores the code, documentation, data-access notes, and compact derived data needed to inspect where predictions are locally reliable, where they are model-sensitive, and where additional simulation or experimental validation is warranted.
 
-## What this repository contains
+## Scope
 
-The current release contains a self-contained Python pipeline:
+The repository is intended to support:
+
+- rerunning the tabular benchmark when the required input tables are available locally;
+- inspecting the processed modelling table, if `data/clean_data.zip` is supplied;
+- tracing manuscript tables and figures to generated source-data files;
+- documenting what is included, what is not included, and what original data sources must be cited.
+
+It is not a redistribution of the full ARC--MOF database, raw CIF archives, or raw third-party source tables.
+
+## Repository layout
 
 ```text
-interpretable_failure_maps_pipeline.py
+interpretable-mof-failure-maps/
+├── README.md
+├── CITATION.cff
+├── LICENSE
+├── CHANGELOG.md
+├── requirements.txt
+├── environment.yml
+├── pyproject.toml
+├── interpretable_failure_maps_pipeline.py
+├── data/
+│   ├── README.md
+│   ├── clean_data.zip                  # optional processed table, if you add it
+│   ├── raw/README.md
+│   └── source_data/README.md
+├── docs/
+│   ├── DATA_AVAILABILITY.md
+│   ├── DATA_SCHEMA.md
+│   ├── EXPECTED_INPUTS.md
+│   ├── OUTPUTS.md
+│   ├── REPRODUCIBILITY.md
+│   ├── MANUSCRIPT_MAPPING.md
+│   ├── CLEAN_DATA_RELEASE.md
+│   ├── GITHUB_UPLOAD_STEPS.md
+│   └── SUBMISSION_CHECKLIST.md
+├── scripts/
+│   ├── README.md
+│   ├── check_clean_data_release.py
+│   └── validate_repository_release.py
+├── results/README.md
+├── manuscript_assets/README.md
+├── supplementary_assets/README.md
+├── notebooks/README.md
+└── src/interpretable_failure_maps/
+    └── __init__.py
 ```
 
-The script reads tabular MOF adsorption/descriptors/cluster/topology CSV files, trains a compact model panel, and generates benchmark metrics, failure-atlas source tables, trust-map diagnostics, and manuscript/SI figure assets.
+## Data policy
 
-## What this repository does **not** contain
+The raw MOF source database files are not committed here. The repository may include a processed table, preferably as:
 
-The raw MOF database/source tables are **not redistributed** in this repository.
+```text
+data/clean_data.zip
+```
 
-Users must obtain the required source data from the original database provider(s), comply with the original licences, and cite the original dataset/data-paper records. This repository only provides code, documentation, and optionally lightweight derived source-data tables when redistribution is permitted.
-
-## Manuscript analysis summary
-
-The manuscript uses a strict common cohort of **263,735 MOF structures** and four adsorption targets:
-
-- CO2 uptake at 0.015 bar
-- CO2 uptake at 0.15 bar
-- CH4 uptake at 5.8 bar
-- CH4 uptake at 65 bar
-
-Three tabular model families are evaluated:
-
-- Ridge regression
-- Random forest regression
-- Histogram gradient boosting regression
-
-The workflow generates:
-
-- global benchmark summaries
-- split-level metrics
-- per-sample prediction diagnostics
-- domain-resolved failure maps
-- hard-domain leaderboards
-- novelty--error relationships
-- model-disagreement and local-trust maps
-- manuscript and Supporting Information source-data tables
-
-## Required input files
-
-The current self-contained script expects the following CSV files in the repository root, next to `interpretable_failure_maps_pipeline.py`:
+The zip file should contain one CSV file:
 
 ```text
 clean_data.csv
-geo-clusters.csv
-mc-clusters.csv
-func-clusters.csv
-flig-clusters.csv
-all_topology_lists.csv
 ```
 
-These files are ignored by `.gitignore` and should not be committed unless redistribution is explicitly permitted.
+This processed table is a derived, machine-learning-ready benchmark table for the present manuscript. Users should cite the original ARC--MOF dataset and paper when using it. See `docs/DATA_AVAILABILITY.md` and `docs/CLEAN_DATA_RELEASE.md`.
 
-See [`docs/EXPECTED_INPUTS.md`](docs/EXPECTED_INPUTS.md) and [`docs/DATA_SCHEMA.md`](docs/DATA_SCHEMA.md).
+## Main adsorption targets
+
+The manuscript analyses four adsorption targets, reported in mmol g^-1:
+
+| Target column | Meaning |
+|---|---|
+| `uptake(mmol/g) CO2 at 0.015 bar` | CO2 uptake at 0.015 bar |
+| `uptake(mmol/g) CO2 at 0.15 bar` | CO2 uptake at 0.15 bar |
+| `uptake(mmol/g) methane at 5.8 bar` | CH4 uptake at 5.8 bar |
+| `uptake(mmol/g) methane at 65 bar` | CH4 uptake at 65 bar |
+
+The strict common modelling cohort contains 263,735 structures after removal of nine rows with missing core numerical descriptors.
+
+## Model panel
+
+The benchmark uses three tabular model families:
+
+- Ridge regression;
+- Random forest regression;
+- Histogram gradient boosting regression.
+
+The workflow reports global metrics, local domain errors, elite-candidate misclassification, novelty--error relationships, model disagreement, and local trust categories.
 
 ## Quick start
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Asgari-research/interpretable-mof-failure-maps.git
-cd interpretable-mof-failure-maps
-```
-
-### 2. Create the environment
-
-Using pip:
+Create an environment:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-or using conda/mamba:
+On Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Or with conda:
 
 ```bash
 conda env create -f environment.yml
-conda activate mof-failure-atlas
+conda activate mof-trust-atlas
 ```
 
-### 3. Add local input data
-
-Place the required local CSV files in the repository root:
+If you are using the processed table, place it at:
 
 ```text
-clean_data.csv
-geo-clusters.csv
-mc-clusters.csv
-func-clusters.csv
-flig-clusters.csv
-all_topology_lists.csv
+data/clean_data.zip
 ```
 
-Do **not** commit these files.
+For workflows that expect local CSV input in the repository root, extract or copy `clean_data.csv` locally before running the pipeline. Do not commit root-level working CSV files unless the data policy has been checked.
 
-### 4. Run the pipeline
+Run the main pipeline:
 
 ```bash
 python interpretable_failure_maps_pipeline.py --n_jobs 0
@@ -122,65 +144,44 @@ python interpretable_failure_maps_pipeline.py --force_model_fits
 python interpretable_failure_maps_pipeline.py --skip_figures
 ```
 
-## Main output folder
-
-The script writes outputs to:
+Generated outputs are written under:
 
 ```text
 failure_maps_outputs/
 ```
 
-This generated output folder is ignored by Git by default.
+This folder is ignored by Git.
 
-Important generated subfolders include:
+## Clean-data check
 
-```text
-failure_maps_outputs/results/metrics/
-failure_maps_outputs/results/predictions/
-failure_maps_outputs/results/tables/
-failure_maps_outputs/results/figure_numeric_data/
-failure_maps_outputs/manuscript_assets/figures/
-failure_maps_outputs/supplementary_assets/figures/
-failure_maps_outputs/final_exports/
+After adding `data/clean_data.zip`, run:
+
+```bash
+python scripts/check_clean_data_release.py
 ```
 
-See [`docs/OUTPUTS.md`](docs/OUTPUTS.md).
+This script verifies that the zip contains `clean_data.csv`, reports rows/columns, checks the expected target columns, and writes a local SHA256 manifest.
 
-## Reproducibility notes
+## Repository release check
 
-Key fixed settings in the current pipeline:
+Before committing, run:
 
-- 5 random train/test splits
-- 20% held-out test fraction
-- base random seed = 42
-- elite-candidate threshold = top 10% of the training target distribution
-- minimum group size for reported group metrics = 30
-- local trust categories from 33rd/66th quantiles of mean absolute error and cross-model prediction spread
-
-Full details are in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
-
-## Repository layout
-
-```text
-docs/                   Documentation for data access, input schema, reproducibility, and outputs
-data/                   Placeholder local-data folders; raw data are not committed
-results/                Placeholder for generated/curated outputs; generated files are ignored
-manuscript_assets/      Placeholder for manuscript figure/table assets
-supplementary_assets/   Placeholder for SI figure/table assets
-src/                    Package namespace placeholder for future modularization
-interpretable_failure_maps_pipeline.py  Current self-contained pipeline
+```bash
+python scripts/validate_repository_release.py
 ```
+
+The script checks for common release mistakes: missing required documentation, placeholder wording, accidentally committed raw input files, and inconsistent clean-data placement.
 
 ## Citation
 
-If you use this repository, please cite:
+If you use this repository, cite:
 
-1. The associated manuscript, once available.
-2. The original MOF database/source-data publications and dataset records used to obtain the raw data.
-3. This GitHub repository or archived release DOI, if a Zenodo release is created.
+1. the associated manuscript;
+2. the original ARC--MOF data record and publication;
+3. the archived repository release, if a Zenodo DOI is created.
 
-See [`CITATION.cff`](CITATION.cff).
+See `CITATION.cff` for software-citation metadata.
 
 ## License
 
-Code in this repository is released under the MIT License. Raw third-party data are not redistributed and remain subject to their original licences.
+Code and documentation in this repository are released under the MIT License unless otherwise stated. Raw third-party source data are not redistributed by this license and remain subject to their original terms.
