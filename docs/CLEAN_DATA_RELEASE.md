@@ -38,10 +38,3 @@ Confirm:
 - the four target columns are present;
 - the manifest SHA256 checksum is saved.
 
-## Attribution
-
-When releasing `clean_data.zip`, keep the ARC--MOF attribution in `docs/DATA_AVAILABILITY.md` and `CITATION.cff`. The processed table should be described as ARC--MOF-derived, not as raw ARC--MOF.
-
-## What not to upload
-
-Do not commit raw CIF archives, raw ARC--MOF tables, local cache folders, or trained model binaries unless there is a separate release decision documenting rights, size, and purpose.
