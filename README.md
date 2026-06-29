@@ -31,7 +31,7 @@ interpretable-mof-failure-maps/
 ├── interpretable_failure_maps_pipeline.py
 ├── data/
 │   ├── README.md
-│   ├── clean_data.zip                  # optional processed table, if you add it
+│   ├── clean_data.zip                 
 │   ├── raw/README.md
 │   └── source_data/README.md
 ├── docs/
