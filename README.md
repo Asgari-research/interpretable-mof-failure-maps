@@ -44,10 +44,6 @@ interpretable-mof-failure-maps/
 │   ├── CLEAN_DATA_RELEASE.md
 │   ├── GITHUB_UPLOAD_STEPS.md
 │   └── SUBMISSION_CHECKLIST.md
-├── scripts/
-│   ├── README.md
-│   ├── check_clean_data_release.py
-│   └── validate_repository_release.py
 ├── results/README.md
 ├── manuscript_assets/README.md
 ├── supplementary_assets/README.md
