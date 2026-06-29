@@ -35,7 +35,3 @@ This file maps manuscript items to the corresponding generated-output categories
 | Table S5 | novelty--error relationships |
 | Table S6 | group-level error summary extract |
 | Table S7 | structural-anchor metadata |
-
-## Source-data principle
-
-The printed manuscript and SI tables are selected or compact extracts. Complete machine-readable summaries should be placed in a curated source-data package when redistribution is permitted.
