@@ -41,18 +41,3 @@ raw CIF archives
 local generated output folders
 trained model binaries
 ```
-
-## After adding clean data
-
-Run:
-
-```bash
-python scripts/check_clean_data_release.py
-```
-
-The script reports the row count, column count, target-column coverage, and SHA256 checksum, then writes:
-
-```text
-data/clean_data_manifest.txt
-```
-
