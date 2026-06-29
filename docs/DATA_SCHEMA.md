@@ -91,8 +91,3 @@ linker_family
 
 The manuscript reports a strict common cohort of 263,735 structures after removing nine rows with missing core numerical descriptors from the initial merged table.
 
-If `data/clean_data.zip` is released, verify it with:
-
-```bash
-python scripts/check_clean_data_release.py
-```
