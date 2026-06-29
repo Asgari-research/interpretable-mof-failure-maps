@@ -86,8 +86,3 @@ metal_family
 functional_family
 linker_family
 ```
-
-## Manuscript cohort
-
-The manuscript reports a strict common cohort of 263,735 structures after removing nine rows with missing core numerical descriptors from the initial merged table.
-
