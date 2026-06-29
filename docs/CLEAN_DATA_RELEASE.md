@@ -21,20 +21,3 @@ Do not place a second copy of `clean_data.csv` in the repository root for public
 ## Why zip the file?
 
 A zipped processed table is easier to upload through GitHub, reduces repository size, and makes it explicit that the file is a curated release artifact rather than an active local working CSV.
-
-## Minimum checks before commit
-
-Run:
-
-```bash
-python scripts/check_clean_data_release.py
-```
-
-Confirm:
-
-- the zip file exists;
-- it contains `clean_data.csv`;
-- the row count matches the intended processed table;
-- the four target columns are present;
-- the manifest SHA256 checksum is saved.
-
