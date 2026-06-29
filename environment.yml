@@ -1,4 +1,4 @@
-name: mof-failure-atlas
+name: mof-trust-atlas
 channels:
   - conda-forge
 dependencies:
@@ -10,8 +10,5 @@ dependencies:
   - matplotlib
   - joblib
   - tqdm
-  - jupyter
-  - notebook
-  - ipykernel
   - pyarrow
   - pip

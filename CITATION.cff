@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "Chemically Auditable Failure Atlases for MOF Adsorption Machine Learning"
-message: "If you use this repository, please cite the associated manuscript and this software repository."
+title: "Mapping Trust in MOF Adsorption Predictions: Chemically Auditable Descriptor Atlases for Machine-Learning Screening"
+message: "If you use this repository, please cite the associated manuscript, the original ARC--MOF data source, and this software repository or archived release."
 type: software
 authors:
   - family-names: Abaei
@@ -8,13 +8,39 @@ authors:
   - family-names: Masoudi
     given-names: Fatemeh
   - family-names: Alimardani
-    given-names: Hossein
-  - family-names: Fakhroleslam
-    given-names: Mohammad
-  - family-names: Eslami
-    given-names: Fatemeh
+    given-names: Hosein
   - family-names: Asgari
     given-names: Mehrdad
 repository-code: "https://github.com/Asgari-research/interpretable-mof-failure-maps"
 license: MIT
-version: "0.1.0"
+version: "0.2.0"
+keywords:
+  - metal-organic frameworks
+  - adsorption
+  - machine learning
+  - reliability
+  - applicability domain
+  - descriptor atlas
+references:
+  - type: article
+    title: "ARC--MOF: A Diverse Database of Metal--Organic Frameworks with DFT-Derived Partial Atomic Charges and Descriptors for Machine Learning"
+    authors:
+      - family-names: Burner
+        given-names: Jake
+      - family-names: Schwiedrzik
+        given-names: Luca
+      - family-names: Krykunov
+        given-names: Mykhaylo
+      - family-names: Luo
+        given-names: Jun
+      - family-names: Boyd
+        given-names: Peter G.
+      - family-names: Woo
+        given-names: Tom K.
+    journal: "Chemistry of Materials"
+    year: 2023
+    volume: 35
+    issue: 3
+    start: 900
+    end: 916
+    doi: "10.1021/acs.chemmater.2c02485"
