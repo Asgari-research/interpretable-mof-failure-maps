@@ -1,14 +1,5 @@
 # Source-data tables
 
-This folder can be used for lightweight derived source-data tables used to reproduce manuscript and Supporting Information figures.
+Use this folder for compact, manuscript-facing source-data tables when redistribution is permitted.
 
-Do not place raw third-party database files here.
-
-Acceptable examples, if redistribution is allowed:
-
-- benchmark summary tables
-- hard-domain ranking extracts
-- novelty--error summary tables
-- trust-category fractions
-- group-level error summaries
-- figure-panel source tables
+Recommended contents include small CSV files that support specific manuscript or Supporting Information tables and figures. Do not place uncurated full prediction dumps or large generated folders here.

@@ -1,9 +1,3 @@
 # Manuscript assets
 
-Generated main-text figure and table assets are written under:
-
-```text
-failure_maps_outputs/manuscript_assets/
-```
-
-This placeholder folder is provided for intentionally added lightweight final assets only.
+Use this folder only for curated manuscript-facing assets that are intentionally committed. Large generated figures and intermediate exports should remain under `failure_maps_outputs/` until reviewed.

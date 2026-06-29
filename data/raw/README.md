@@ -1,5 +1,5 @@
 # Raw data
 
-Do not commit raw database/source files.
+This folder is reserved for local raw input files. Files placed here are not intended for public commits.
 
-The current pipeline expects the raw CSV files to be placed in the repository root unless the script paths are modified.
+Obtain raw/source data from the original records and cite the original data sources. This repository does not grant rights to redistribute third-party raw data.

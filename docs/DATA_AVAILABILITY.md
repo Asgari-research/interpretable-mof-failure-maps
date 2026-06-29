@@ -1,35 +1,62 @@
 # Data availability
 
-The raw MOF database/source files used to construct the modelling cohort are **not redistributed** in this repository.
+The repository separates processed manuscript data from raw third-party source data.
 
-## Why raw data are not included
+## Processed data included or intended for inclusion
 
-The input files are derived from external MOF database resources and associated tabular descriptor/cluster/topology files. To respect original data-provider licences, citation requirements, and file-size constraints, users must obtain the source files directly from the original database records.
+The recommended public processed file is:
 
-## What this repository provides
+```text
+data/clean_data.zip
+```
 
-This repository provides:
-
-- a self-contained Python pipeline
-- environment files
-- documentation of expected inputs and outputs
-- reproducibility notes
-- optional lightweight derived source-data tables when redistribution is permitted
-
-## Expected local input files
-
-The current pipeline expects these files next to `interpretable_failure_maps_pipeline.py`:
+This zip should contain:
 
 ```text
 clean_data.csv
+```
+
+`clean_data.csv` is a derived, machine-learning-ready table for the descriptor-trust-atlas benchmark. It is provided to support transparency, reproducibility, and reuse of the reported analysis without requiring users to reconstruct the full working table from raw source files.
+
+## Original data source
+
+The underlying source data are derived from ARC--MOF. Users should cite the original ARC--MOF dataset record and associated publication when using `clean_data.csv` or outputs generated from it.
+
+Original ARC--MOF data record:
+
+```text
+https://doi.org/10.5281/zenodo.6908728
+```
+
+Associated publication:
+
+```bibtex
+@article{burner2023arcmof,
+  title   = {ARC--MOF: A Diverse Database of Metal--Organic Frameworks with DFT-Derived Partial Atomic Charges and Descriptors for Machine Learning},
+  author  = {Burner, Jake and Schwiedrzik, Luca and Krykunov, Mykhaylo and Luo, Jun and Boyd, Peter G. and Woo, Tom K.},
+  journal = {Chemistry of Materials},
+  volume  = {35},
+  number  = {3},
+  pages   = {900--916},
+  year    = {2023},
+  doi     = {10.1021/acs.chemmater.2c02485}
+}
+```
+
+## Files not redistributed
+
+This repository does not redistribute the full raw ARC--MOF database, raw CIF archives, or raw adsorption/descriptors tables. The following are treated as local inputs or working files:
+
+```text
+geometric_properties.csv
+post_comb_vsa-CO2.csv
+methane.csv
 geo-clusters.csv
 mc-clusters.csv
 func-clusters.csv
 flig-clusters.csv
 all_topology_lists.csv
 ```
-
-These files are intentionally ignored by Git.
 
 ## Generated outputs
 
@@ -39,8 +66,4 @@ Generated outputs are written under:
 failure_maps_outputs/
 ```
 
-This folder is ignored by Git by default.
-
-## Citation of source data
-
-Users must cite the original MOF database/source-data publications and dataset records used to obtain the raw data. The associated manuscript and this repository should also be cited when using the code or derived outputs.
+This folder is ignored by Git. Curated source-data tables may be copied into `data/source_data/` only after checking size, relevance, and redistribution rights.

@@ -1,9 +1,10 @@
 # Scripts
 
-The current canonical pipeline is located at the repository root:
+This folder contains lightweight repository-maintenance scripts.
 
 ```text
-interpretable_failure_maps_pipeline.py
+check_clean_data_release.py       Validate data/clean_data.zip and write a checksum manifest.
+validate_repository_release.py    Check documentation, metadata, and data-release hygiene before commit.
 ```
 
-This folder is reserved for future split scripts or small helper utilities.
+These scripts are not part of the model-fitting workflow. They are release-quality checks for the GitHub repository.

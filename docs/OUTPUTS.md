@@ -1,10 +1,12 @@
-# Output files
+# Outputs
 
-The pipeline writes outputs under:
+The main generated output folder is:
 
 ```text
 failure_maps_outputs/
 ```
+
+It is ignored by Git.
 
 ## Major output folders
 
@@ -25,7 +27,7 @@ failure_maps_outputs/final_exports/
 
 ## Important generated tables
 
-Representative generated outputs include:
+Representative generated CSV files include:
 
 ```text
 all_split_metrics.csv
@@ -39,7 +41,7 @@ table_agreement_disagreement_summary.csv
 
 ## Prediction-level outputs
 
-Prediction files are generated for each target/model/split under:
+Per-sample prediction files are generated under:
 
 ```text
 failure_maps_outputs/results/predictions/
@@ -49,22 +51,10 @@ These files can be large and are not tracked by Git by default.
 
 ## Figure source data
 
-The exact numeric tables used for individual figures and panels are written under:
+Figure numeric source tables are written under:
 
 ```text
 failure_maps_outputs/results/figure_numeric_data/
 ```
 
-## Manuscript/SI assets
-
-Main figure assets are written to:
-
-```text
-failure_maps_outputs/manuscript_assets/figures/
-```
-
-SI figure assets are written to:
-
-```text
-failure_maps_outputs/supplementary_assets/figures/
-```
+Curated figure source-data tables may be copied to `data/source_data/` after review.

@@ -1,70 +1,63 @@
-# Manual GitHub upload steps
+# GitHub upload steps
 
-Repository URL:
+Repository:
 
 ```text
 https://github.com/Asgari-research/interpretable-mof-failure-maps
 ```
 
-## 1. Clone
+## 1. Make a safety branch
 
 ```bash
 git clone https://github.com/Asgari-research/interpretable-mof-failure-maps.git
 cd interpretable-mof-failure-maps
+git checkout -b repo-cleanup-submission
 ```
 
-## 2. Copy this package into the cloned folder
+## 2. Copy the replacement package
 
-Copy all files from this prepared package into the cloned repository folder.
+Copy the contents of the provided replacement zip into the cloned repository root. Allow files such as `README.md`, `CITATION.cff`, `.gitignore`, `docs/*.md`, and `data/README.md` to be overwritten.
 
-## 3. Check status
+Do not overwrite the main Python pipeline unless you have a separately verified formatted version. This cleanup package is focused on repository documentation, metadata, data policy, and release checks.
+
+## 3. Add clean data
+
+Place your processed data zip at:
+
+```text
+data/clean_data.zip
+```
+
+The zip should contain `clean_data.csv`.
+
+Then run:
 
 ```bash
-git status
+python scripts/check_clean_data_release.py
 ```
 
-Confirm that raw data files are not listed.
-
-## 4. Add files
+## 4. Validate the repository
 
 ```bash
-git add README.md LICENSE CITATION.cff .gitignore requirements.txt environment.yml
-git add docs data results manuscript_assets supplementary_assets notebooks scripts src
-git add interpretable_failure_maps_pipeline.py
+python scripts/validate_repository_release.py
 ```
 
-## 5. Commit
+Fix any reported errors before committing.
 
-```bash
-git commit -m "Initialize interpretable MOF failure-map reproducibility package"
-```
-
-## 6. Push
-
-If you are working directly on main:
-
-```bash
-git push origin main
-```
-
-If you prefer a branch:
-
-```bash
-git checkout -b repo-setup
-git push origin repo-setup
-```
-
-Then open a pull request on GitHub.
-
-## 7. Before pushing, verify dangerous files are not included
-
-Run:
+## 5. Review Git status
 
 ```bash
 git status --short
 ```
 
-Do not push:
+Expected changed files include documentation, metadata, scripts, and possibly:
+
+```text
+data/clean_data.zip
+data/clean_data_manifest.txt
+```
+
+Do not commit root-level local files such as:
 
 ```text
 clean_data.csv
@@ -74,7 +67,27 @@ func-clusters.csv
 flig-clusters.csv
 all_topology_lists.csv
 failure_maps_outputs/
-*.joblib
-*.pkl
-*.parquet
 ```
+
+## 6. Commit
+
+```bash
+git add README.md CITATION.cff CHANGELOG.md .gitignore requirements.txt environment.yml pyproject.toml
+git add docs data scripts results manuscript_assets supplementary_assets notebooks src
+git commit -m "Clean repository documentation and data release notes"
+```
+
+If you are adding the processed table:
+
+```bash
+git add data/clean_data.zip data/clean_data_manifest.txt
+git commit -m "Add processed clean data release artifact"
+```
+
+## 7. Push
+
+```bash
+git push origin repo-cleanup-submission
+```
+
+Open a pull request, or merge into `main` after checking the rendered GitHub pages.

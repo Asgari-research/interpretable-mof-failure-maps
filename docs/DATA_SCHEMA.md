@@ -1,37 +1,35 @@
 # Data schema
 
-This document describes the expected schema used by the current pipeline.
+This document describes the expected processed-table schema for the descriptor-trust-atlas workflow.
 
-## Main identifier
+## Identifier
 
-The main table is expected to contain:
+The main processed table should include a structure identifier column:
 
 ```text
 filename
 ```
 
-The pipeline creates a normalized identifier called:
+The pipeline normalizes this identifier into:
 
 ```text
 id_norm
 ```
 
+Identifier normalization removes path components, strips whitespace, and removes `.cif` suffixes.
+
 ## Target columns
 
-The default targets are:
+| Column | Manuscript meaning | Unit |
+|---|---|---|
+| `uptake(mmol/g) CO2 at 0.015 bar` | CO2 uptake at 0.015 bar | mmol g^-1 |
+| `uptake(mmol/g) CO2 at 0.15 bar` | CO2 uptake at 0.15 bar | mmol g^-1 |
+| `uptake(mmol/g) methane at 5.8 bar` | CH4 uptake at 5.8 bar | mmol g^-1 |
+| `uptake(mmol/g) methane at 65 bar` | CH4 uptake at 65 bar | mmol g^-1 |
 
-| Target column | Manuscript meaning |
-|---|---|
-| `uptake(mmol/g) CO2 at 0.015 bar` | CO2 uptake at 0.015 bar |
-| `uptake(mmol/g) CO2 at 0.15 bar` | CO2 uptake at 0.15 bar |
-| `uptake(mmol/g) methane at 5.8 bar` | CH4 uptake at 5.8 bar |
-| `uptake(mmol/g) methane at 65 bar` | CH4 uptake at 65 bar |
+## Base numerical descriptor columns
 
-All targets are treated as mmol g^-1.
-
-## Base numerical features
-
-The pipeline uses available columns from this set:
+The workflow uses available columns from this set:
 
 ```text
 Density
@@ -59,9 +57,9 @@ Di
 Dif
 ```
 
-## Engineered numerical features
+## Engineered numerical descriptors
 
-The pipeline computes:
+The pipeline computes or expects these derived quantities where possible:
 
 ```text
 lcd_pld_ratio
@@ -74,9 +72,9 @@ avaf_x_density
 pore_shape_ratio
 ```
 
-## Categorical/domain features
+## Categorical/domain descriptors
 
-The pipeline uses or creates:
+The workflow uses or constructs:
 
 ```text
 topology_group
@@ -89,10 +87,12 @@ functional_family
 linker_family
 ```
 
-## Final cohort used in manuscript
+## Manuscript cohort
 
-The manuscript reports a final common cohort of 263,735 structures after removing nine rows with missing core numerical descriptors from the initial merged table.
+The manuscript reports a strict common cohort of 263,735 structures after removing nine rows with missing core numerical descriptors from the initial merged table.
 
-## Notes
+If `data/clean_data.zip` is released, verify it with:
 
-If your local raw column names differ, adapt the constants at the top of `interpretable_failure_maps_pipeline.py`.
+```bash
+python scripts/check_clean_data_release.py
+```

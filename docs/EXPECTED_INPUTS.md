@@ -1,47 +1,50 @@
-# Expected input files
+# Expected inputs
 
-The current self-contained pipeline reads input CSV files from the same directory as:
+The repository supports two practical modes.
 
-```text
-interpretable_failure_maps_pipeline.py
-```
+## Mode A: Processed-table mode
 
-## Required files
+Use this mode for the public repository release.
 
-| Filename | Role |
-|---|---|
-| `clean_data.csv` | Main merged adsorption/descriptors table |
-| `geo-clusters.csv` | Geometry-family cluster assignments |
-| `mc-clusters.csv` | Metal-cluster/family assignments |
-| `func-clusters.csv` | Functional-family assignments |
-| `flig-clusters.csv` | Linker-family assignments |
-| `all_topology_lists.csv` | Topology labels and supplementary topology information |
-
-## Important
-
-These files are not included in the repository and are ignored by `.gitignore`.
-
-Place them locally in the repository root before running:
-
-```bash
-python interpretable_failure_maps_pipeline.py --n_jobs 0
-```
-
-## Input identifier handling
-
-The pipeline normalizes structure identifiers by:
-
-- taking the basename of the file path,
-- removing `.cif` suffixes,
-- stripping whitespace.
-
-This is used to merge cluster/topology tables with the main descriptor table.
-
-## Main target columns expected by the pipeline
+Expected file:
 
 ```text
-uptake(mmol/g) CO2 at 0.015 bar
-uptake(mmol/g) CO2 at 0.15 bar
-uptake(mmol/g) methane at 5.8 bar
-uptake(mmol/g) methane at 65 bar
+data/clean_data.zip
 ```
+
+The zip should contain:
+
+```text
+clean_data.csv
+```
+
+Some versions of the pipeline may expect `clean_data.csv` next to `interpretable_failure_maps_pipeline.py`. If so, extract the CSV locally for the run, but do not commit the extracted root-level CSV unless the data policy has been checked.
+
+## Mode B: Full local regeneration mode
+
+Use this mode only when rebuilding the processed table from local source files.
+
+Expected local files may include:
+
+```text
+clean_data.csv
+geo-clusters.csv
+mc-clusters.csv
+func-clusters.csv
+flig-clusters.csv
+all_topology_lists.csv
+```
+
+Optional raw/source files may include:
+
+```text
+geometric_properties.csv
+post_comb_vsa-CO2.csv
+methane.csv
+```
+
+These files are ignored by `.gitignore` because they may be large or subject to third-party redistribution terms.
+
+## Identifier handling
+
+The pipeline normalizes identifiers by taking the basename, removing `.cif`, and stripping whitespace before merging cluster/topology information.
