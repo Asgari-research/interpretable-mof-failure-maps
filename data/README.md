@@ -56,4 +56,3 @@ The script reports the row count, column count, target-column coverage, and SHA2
 data/clean_data_manifest.txt
 ```
 
-Commit both `data/clean_data.zip` and `data/clean_data_manifest.txt` if the table is approved for release.
