@@ -57,4 +57,3 @@ Figure numeric source tables are written under:
 failure_maps_outputs/results/figure_numeric_data/
 ```
 
-Curated figure source-data tables may be copied to `data/source_data/` after review.
