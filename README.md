@@ -164,7 +164,7 @@ This script verifies that the zip contains `clean_data.csv`, reports rows/column
 
 ## Repository release check
 
-Before committing, run:
+Run:
 
 ```bash
 python scripts/validate_repository_release.py
