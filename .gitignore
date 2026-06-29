@@ -24,38 +24,52 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Logs
+# Logs and temporary files
 *.log
+*.tmp
+*.temp
+~$*
 
-# Raw input database/source files expected by the pipeline
+# Local raw/source database files: do not commit unless rights are checked
 clean_data.csv
 geo-clusters.csv
 mc-clusters.csv
 func-clusters.csv
 flig-clusters.csv
 all_topology_lists.csv
+geometric_properties.csv
+post_comb_vsa-CO2.csv
+methane.csv
+*.cif
 
-# Generated pipeline outputs
+# Large/generated pipeline outputs
 failure_maps_outputs/
+results/generated/
 results/*
+!results/README.md
 !results/.gitkeep
 
-manuscript_assets/*
-!manuscript_assets/.gitkeep
-
-supplementary_assets/*
-!supplementary_assets/.gitkeep
-
-# Local data folders
+# Keep curated processed data and manifests when intentionally added
 data/raw/*
-!data/raw/.gitkeep
 !data/raw/README.md
-
+!data/raw/.gitkeep
 data/interim/*
 !data/interim/.gitkeep
-
 data/processed/*
 !data/processed/.gitkeep
+!data/README.md
+!data/source_data/
+!data/source_data/README.md
+!data/clean_data.zip
+!data/clean_data_manifest.txt
+
+# Asset folders: keep documentation, not uncurated bulk exports
+manuscript_assets/*
+!manuscript_assets/README.md
+!manuscript_assets/.gitkeep
+supplementary_assets/*
+!supplementary_assets/README.md
+!supplementary_assets/.gitkeep
 
 # Large binary/model files
 *.joblib
@@ -77,5 +91,3 @@ data/processed/*
 *.toc
 *.lof
 *.lot
-
-# Keep intentionally added lightweight source-data CSVs possible with git add -f
