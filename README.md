@@ -148,26 +148,6 @@ failure_maps_outputs/
 
 This folder is ignored by Git.
 
-## Clean-data check
-
-After adding `data/clean_data.zip`, run:
-
-```bash
-python scripts/check_clean_data_release.py
-```
-
-This script verifies that the zip contains `clean_data.csv`, reports rows/columns, checks the expected target columns, and writes a local SHA256 manifest.
-
-## Repository release check
-
-Run:
-
-```bash
-python scripts/validate_repository_release.py
-```
-
-The script checks for common release mistakes: missing required documentation, placeholder wording, accidentally committed raw input files, and inconsistent clean-data placement.
-
 ## Citation
 
 If you use this repository, cite:
